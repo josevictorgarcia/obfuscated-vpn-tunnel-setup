@@ -31,6 +31,12 @@ However, you can use any other virtual machine or server that meets these basic 
 2. Clone this repository in your VM
 3. Execute the scripts according to what you want:
 
+Before running a script, make sure it has execution permissions. Use the following commands:
+```bash
+    sudo chmod +x <script>
+    sudo ./<script>
+```
+
 - If you only wish to install **WireGuard** in your server, execute the `wireguard.sh` script (notice that simple_obfs is also installed in this script). However if you want simple_obfs to work in your client device, you may need to do some additional configuration which is not detailed in this repository. This file wireguard.sh is for WireGuard setup. Once the script is successfully executed, find the WireGuard client app and install it on your client device (phone, laptop, ...). You can find the client app on the Play Store.
 
 - If you want to add **shadowsocks + simple_obfs** to your server, execute the `shadowsocks.sh` script (if you already executed the wireguard.sh script previously, don't worry, there should not be any problems with that). Once the script is successfully executed, find the Shadowsocks client app on your client device and install it. You will also need to install the simple_obfs plugin on your client device. The plugin should be automatically recognized by the shadowsocks app. You can find the Sadowsocks client app on the Play Store or in the following repository: [Shadowsocks Android Releases](https://github.com/shadowsocks/shadowsocks-android/releases).  The simple_obfs plugin is also available here: [simple-obfs Releases](https://github.com/shadowsocks/simple-obfs/releases).

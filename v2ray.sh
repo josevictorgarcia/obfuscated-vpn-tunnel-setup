@@ -98,18 +98,13 @@ sudo bash -c 'cat << EOF > /usr/local/etc/v2ray/config.json
 }
 EOF'
 
-# Activar y arrancar V2Ray
-echo "Habilitando y arrancando V2Ray..."
-sudo systemctl enable v2ray
-sudo systemctl start v2ray
-
 # Instalar Certbot
 echo "Instalando Certbot..."
 sudo apt install -y certbot
 
 # Obtener el certificado SSL para el dominio
 echo "Solicitando certificado SSL para $DOMAIN..."
-sudo certbot certonly --non-interactive --agree-tos --email $EMAIL --dns-cloudflare -d $DOMAIN
+sudo certbot certonly --non-interactive --agree-tos --email $EMAIL --standalone -d $DOMAIN
 
 # Configurar la renovación automática del certificado
 echo "Configurando la renovación automática del certificado..."
@@ -119,6 +114,11 @@ sudo systemctl enable certbot.timer
 echo "Configurando firewall (si es necesario)..."
 # Abre el puerto 443 para V2Ray
 sudo ufw allow 443/tcp
+
+# Activar y arrancar V2Ray
+echo "Habilitando y arrancando V2Ray..."
+sudo systemctl enable v2ray
+sudo systemctl start v2ray
 
 # Verificar el estado de V2Ray
 echo "Verificando el estado de V2Ray..."
