@@ -1,0 +1,277 @@
+Jul 15 22:18:59 vpn systemd[1]: v2ray.service: Failed with result 'exit-code'.
+Jul 15 22:18:59 vpn systemd[1]: v2ray.service: Scheduled restart job, restart counter is at 5.
+Jul 15 22:18:59 vpn systemd[1]: v2ray.service: Start request repeated too quickly.
+Jul 15 22:18:59 vpn systemd[1]: v2ray.service: Failed with result 'exit-code'.
+Jul 15 22:18:59 vpn systemd[1]: Failed to start v2ray.service - V2Ray Service.
+azureuser@vpn:~$ sudo nano /etc/systemd/system/v2ray.service
+azureuser@vpn:~$ sudo systemctl daemon-reload
+sudo systemctl restart v2ray
+azureuser@vpn:~$ sudo systemctl status v2ray
+× v2ray.service - V2Ray Service
+     Loaded: loaded (/etc/systemd/system/v2ray.service; enabled; preset: enabled)
+    Drop-In: /etc/systemd/system/v2ray.service.d
+             └─10-donot_touch_single_conf.conf
+     Active: failed (Result: exit-code) since Tue 2025-07-15 22:19:57 UTC; 4s ago
+   Duration: 18ms
+    Process: 14231 ExecStart=/usr/local/bin/v2ray run -config /usr/local/etc/v2ray/config.json (code=exited, status=1/FAILURE)
+   Main PID: 14231 (code=exited, status=1/FAILURE)
+        CPU: 13ms
+
+Jul 15 22:19:57 vpn systemd[1]: v2ray.service: Scheduled restart job, restart counter is at 5.
+Jul 15 22:19:57 vpn systemd[1]: v2ray.service: Start request repeated too quickly.
+Jul 15 22:19:57 vpn systemd[1]: v2ray.service: Failed with result 'exit-code'.
+Jul 15 22:19:57 vpn systemd[1]: Failed to start v2ray.service - V2Ray Service.
+azureuser@vpn:~$ sudo nano /usr/local/etc/v2ray/config.json
+azureuser@vpn:~$ sudo systemctl restart v2ray
+azureuser@vpn:~$ sudo systemctl status v2ray
+× v2ray.service - V2Ray Service
+     Loaded: loaded (/etc/systemd/system/v2ray.service; enabled; preset: enabled)
+    Drop-In: /etc/systemd/system/v2ray.service.d
+             └─10-donot_touch_single_conf.conf
+     Active: failed (Result: exit-code) since Tue 2025-07-15 22:21:51 UTC; 12s ago
+   Duration: 19ms
+    Process: 14266 ExecStart=/usr/local/bin/v2ray run -config /usr/local/etc/v2ray/config.json (code=exited, status=1/FAILURE)
+   Main PID: 14266 (code=exited, status=1/FAILURE)
+        CPU: 13ms
+
+Jul 15 22:21:51 vpn systemd[1]: v2ray.service: Failed with result 'exit-code'.
+Jul 15 22:21:51 vpn systemd[1]: v2ray.service: Scheduled restart job, restart counter is at 5.
+Jul 15 22:21:51 vpn systemd[1]: v2ray.service: Start request repeated too quickly.
+Jul 15 22:21:51 vpn systemd[1]: v2ray.service: Failed with result 'exit-code'.
+Jul 15 22:21:51 vpn systemd[1]: Failed to start v2ray.service - V2Ray Service.
+azureuser@vpn:~$ sudo journalctl -xeu v2ray
+░░ Defined-By: systemd
+░░ Support: http://www.ubuntu.com/support
+░░ 
+░░ A start job for unit v2ray.service has finished successfully.
+░░ 
+░░ The job identifier is 33606.
+Jul 15 22:21:51 vpn v2ray[14266]: V2Ray 5.37.0 (V2Fly, a community-driven edition of V2Ray.) Custom (go1.24.4 linux/amd64)
+Jul 15 22:21:51 vpn v2ray[14266]: A unified platform for anti-censorship.
+Jul 15 22:21:51 vpn v2ray[14266]: Failed to start: main/commands: failed to load config: [/usr/local/etc/v2ray/config.json] > infra/conf/>
+Jul 15 22:21:51 vpn systemd[1]: v2ray.service: Main process exited, code=exited, status=1/FAILURE
+░░ Subject: Unit process exited
+░░ Defined-By: systemd
+░░ Support: http://www.ubuntu.com/support
+░░ 
+░░ An ExecStart= process belonging to unit v2ray.service has exited.
+░░ 
+░░ The process' exit code is 'exited' and its exit status is 1.
+Jul 15 22:21:51 vpn systemd[1]: v2ray.service: Failed with result 'exit-code'.
+░░ Subject: Unit failed
+░░ Defined-By: systemd
+░░ Support: http://www.ubuntu.com/support
+░░ 
+░░ The unit v2ray.service has entered the 'failed' state with result 'exit-code'.
+Jul 15 22:21:51 vpn systemd[1]: v2ray.service: Scheduled restart job, restart counter is at 5.
+░░ Subject: Automatic restarting of a unit has been scheduled
+░░ Defined-By: systemd
+░░ Support: http://www.ubuntu.com/support
+░░ 
+░░ Automatic restarting of the unit v2ray.service has been scheduled, as the result for
+░░ the configured Restart= setting for the unit.
+Jul 15 22:21:51 vpn systemd[1]: v2ray.service: Start request repeated too quickly.
+Jul 15 22:21:51 vpn systemd[1]: v2ray.service: Failed with result 'exit-code'.
+░░ Subject: Unit failed
+░░ Defined-By: systemd
+░░ Support: http://www.ubuntu.com/support
+░░ 
+░░ The unit v2ray.service has entered the 'failed' state with result 'exit-code'.
+Jul 15 22:21:51 vpn systemd[1]: Failed to start v2ray.service - V2Ray Service.
+░░ Subject: A start job for unit v2ray.service has failed
+░░ Defined-By: systemd
+░░ Support: http://www.ubuntu.com/support
+░░ 
+░░ A start job for unit v2ray.service has finished with a failure.
+░░ 
+░░ The job identifier is 33728 and the job result is failed.
+lines 4606-4650/4650 (END)
+azureuser@vpn:~$ sudo nano /usr/local/etc/v2ray/config.json
+azureuser@vpn:~$ rm /usr/local/etc/v2ray/config.json
+rm: remove write-protected regular file '/usr/local/etc/v2ray/config.json'? y
+rm: cannot remove '/usr/local/etc/v2ray/config.json': Permission denied
+azureuser@vpn:~$ sudo rm /usr/local/etc/v2ray/config.json
+azureuser@vpn:~$ sudo nano /usr/local/etc/v2ray/config.json
+azureuser@vpn:~$ sudo jq . /usr/local/etc/v2ray/config.json
+{
+  "inbounds": [
+    {
+      "port": 443,
+      "listen": "0.0.0.0",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "8f1ec588-9446-48be-95c1-6e9a8bf2bf65",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/myapp"
+        },
+        "tlsSettings": {
+          "certificates": [
+            {
+              "certificateFile": "/etc/letsencrypt/live/chinesetexts.duckdns.org/fullchain.pem",
+              "keyFile": "/etc/letsencrypt/live/chinesetexts.duckdns.org/privkey.pem"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ],
+  "log": {
+    "loglevel": "warning"
+  }
+}
+azureuser@vpn:~$ sudo ls -l /etc/letsencrypt/live/chinesetexts.duckdns.org/
+ls: cannot access '/etc/letsencrypt/live/chinesetexts.duckdns.org/': No such file or directory
+azureuser@vpn:~$ 
+ *  History restored 
+
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+Joses-MacBook-Pro:chinesetexts josevictorgarciallorente$ ssh -i vpn_key.pem azureuser@68.221.160.90
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.11.0-1018-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Tue Jul 15 22:28:35 UTC 2025
+
+  System load:  0.0                Processes:             120
+  Usage of /:   16.5% of 28.02GB   Users logged in:       1
+  Memory usage: 45%                IPv4 address for eth0: 10.0.0.4
+  Swap usage:   0%
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Tue Jul 15 21:30:33 2025 from 81.61.187.236
+azureuser@vpn:~$ dig chinesetexts.duckdns.org
+
+; <<>> DiG 9.18.30-0ubuntu0.24.04.2-Ubuntu <<>> chinesetexts.duckdns.org
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30784
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;chinesetexts.duckdns.org.      IN      A
+
+;; ANSWER SECTION:
+chinesetexts.duckdns.org. 60    IN      A       68.221.160.90
+
+;; Query time: 97 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+;; WHEN: Tue Jul 15 22:28:48 UTC 2025
+;; MSG SIZE  rcvd: 69
+
+azureuser@vpn:~$ sudo certbot certonly --standalone -d chinesetexts.duckdns.org --email hoxetok619@pacfut.com --agree-tos
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing, once your first certificate is successfully issued, to
+share your email address with the Electronic Frontier Foundation, a founding
+partner of the Let's Encrypt project and the non-profit organization that
+develops Certbot? We'd like to send you email about our work encrypting the web,
+EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: y
+Account registered.
+Requesting a certificate for chinesetexts.duckdns.org
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Could not bind TCP port 80 because it is already in use by another process on
+this system (such as a web server). Please stop the program in question and then
+try again.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(R)etry/(C)ancel: r
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Could not bind TCP port 80 because it is already in use by another process on
+this system (such as a web server). Please stop the program in question and then
+try again.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(R)etry/(C)ancel: c
+Could not bind TCP port 80 because it is already in use by another process on this system (such as a web server). Please stop the program in question and then try again.
+Ask for help or search for solutions at https://community.letsencrypt.org. See the logfile /var/log/letsencrypt/letsencrypt.log or re-run Certbot with -v for more details.
+azureuser@vpn:~$ sudo lsof -i :80
+COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+nginx   13720     root    5u  IPv4 109690      0t0  TCP *:http (LISTEN)
+nginx   13720     root    6u  IPv6 109691      0t0  TCP *:http (LISTEN)
+nginx   13723 www-data    5u  IPv4 109690      0t0  TCP *:http (LISTEN)
+nginx   13723 www-data    6u  IPv6 109691      0t0  TCP *:http (LISTEN)
+azureuser@vpn:~$ sudo systemctl stop nginx
+azureuser@vpn:~$ sudo certbot certonly --standalone -d chinesetexts.duckdns.org --email hoxetok619@pacfut.com --agree-tos
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Requesting a certificate for chinesetexts.duckdns.org
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/chinesetexts.duckdns.org/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/chinesetexts.duckdns.org/privkey.pem
+This certificate expires on 2025-10-13.
+These files will be updated when the certificate renews.
+Certbot has set up a scheduled task to automatically renew this certificate in the background.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+azureuser@vpn:~$ sudo systemctl start nginx
+azureuser@vpn:~$ sudo lsof -i :80
+COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+nginx   14409     root    5u  IPv4 116103      0t0  TCP *:http (LISTEN)
+nginx   14409     root    6u  IPv6 116104      0t0  TCP *:http (LISTEN)
+nginx   14410 www-data    5u  IPv4 116103      0t0  TCP *:http (LISTEN)
+nginx   14410 www-data    6u  IPv6 116104      0t0  TCP *:http (LISTEN)
+azureuser@vpn:~$ ^C
+azureuser@vpn:~$ sudo ls -l /etc/letsencrypt/live/chinesetexts.duckdns.org/
+total 4
+-rw-r--r-- 1 root root 692 Jul 15 22:31 README
+lrwxrwxrwx 1 root root  48 Jul 15 22:31 cert.pem -> ../../archive/chinesetexts.duckdns.org/cert1.pem
+lrwxrwxrwx 1 root root  49 Jul 15 22:31 chain.pem -> ../../archive/chinesetexts.duckdns.org/chain1.pem
+lrwxrwxrwx 1 root root  53 Jul 15 22:31 fullchain.pem -> ../../archive/chinesetexts.duckdns.org/fullchain1.pem
+lrwxrwxrwx 1 root root  51 Jul 15 22:31 privkey.pem -> ../../archive/chinesetexts.duckdns.org/privkey1.pem
+azureuser@vpn:~$ sudo ls /etc/letsencrypt/live/chinesetexts.duckdns.org/
+README  cert.pem  chain.pem  fullchain.pem  privkey.pem
+azureuser@vpn:~$ sudo systemctl restart v2ray
+azureuser@vpn:~$ sudo systemctl status v2ray
+● v2ray.service - V2Ray Service
+     Loaded: loaded (/etc/systemd/system/v2ray.service; enabled; preset: enabled)
+    Drop-In: /etc/systemd/system/v2ray.service.d
+             └─10-donot_touch_single_conf.conf
+     Active: active (running) since Tue 2025-07-15 22:35:30 UTC; 7s ago
+   Main PID: 14433 (v2ray)
+      Tasks: 5 (limit: 994)
+     Memory: 14.4M (peak: 14.4M)
+        CPU: 17ms
+     CGroup: /system.slice/v2ray.service
+             └─14433 /usr/local/bin/v2ray run -config /usr/local/etc/v2ray/config.json
+
+Jul 15 22:35:30 vpn systemd[1]: Started v2ray.service - V2Ray Service.
+Jul 15 22:35:30 vpn v2ray[14433]: V2Ray 5.37.0 (V2Fly, a community-driven edition of V2Ray.) Custom (go1.24.4 linux/amd64)
+Jul 15 22:35:30 vpn v2ray[14433]: A unified platform for anti-censorship.
+Jul 15 22:35:30 vpn v2ray[14433]: 2025/07/15 22:35:30 [Warning] V2Ray 5.37.0 started
+azureuser@vpn:~$ 
