@@ -16,6 +16,9 @@ sudo apt update -y && sudo apt upgrade -y
 echo "Instalando dependencias..."
 sudo apt install -y curl unzip socat cron python3-certbot-nginx jq
 
+#Apagamos los procesos nginx que se acaban de establecer en el puerto 80
+sudo systemctl stop nginx
+
 # Instalar V2Ray
 echo "Instalando V2Ray..."
 wget https://github.com/v2fly/v2ray-core/releases/download/v5.37.0/v2ray-linux-64.zip -O /tmp/v2ray-linux.zip
